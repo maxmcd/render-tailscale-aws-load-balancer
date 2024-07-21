@@ -38,7 +38,7 @@ services:
     dockerfilePath: aws-daemon.Dockerfile
   - type: worker
     numInstances: 3
-    name: aws-daemon
+    name: example-service
     envVars:
       - key: PORT
         value: 8000
