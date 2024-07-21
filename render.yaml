@@ -1,0 +1,45 @@
+services:
+  - type: worker
+    name: render-subnet-router-1
+    runtime: docker
+    region: ohio
+    autoDeploy: false
+    envVars:
+      - key: TAILSCALE_AUTHKEY
+        sync: false
+      - key: TAILSCALE_VERSION
+        value: 1.70.0
+      - key: ADVERTISE_ROUTES
+        value: 10.0.0.0/8
+    disk:
+      name: tailscale-state
+      mountPath: /var/lib/tailscale
+      sizeGB: 1
+  - type: worker
+    name: render-subnet-router-2
+    runtime: docker
+    region: ohio
+    autoDeploy: false
+    envVars:
+      - key: TAILSCALE_AUTHKEY
+        sync: false
+      - key: TAILSCALE_VERSION
+        value: 1.70.0
+      - key: ADVERTISE_ROUTES
+        value: 10.0.0.0/8
+    disk:
+      name: tailscale-state
+      mountPath: /var/lib/tailscale
+      sizeGB: 1
+  - type: worker
+    name: aws-daemon
+    runtime: docker
+    region: ohio
+    dockerfilePath: aws-daemon.Dockerfile
+  - type: worker
+    numInstances: 3
+    name: aws-daemon
+    port: 8000
+    runtime: node
+    startCommand: node index.js
+    region: ohio
