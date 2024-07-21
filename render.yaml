@@ -43,5 +43,5 @@ services:
       - key: PORT
         value: 8000
     runtime: node
-    startCommand: node exampe-service.mjs
+    startCommand: node example-service.mjs
     region: ohio
