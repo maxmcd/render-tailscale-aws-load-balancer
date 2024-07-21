@@ -6,7 +6,7 @@ const server = http
       res.end("OK");
       return;
     }
-    setTimeout(() => res.end("Hello World"), 1000);
+    setTimeout(() => res.end("Hello World!"), 1000);
   })
   .listen(process.env.PORT || 8000)
   .on("listening", () => {
