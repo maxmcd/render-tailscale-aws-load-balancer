@@ -39,7 +39,9 @@ services:
   - type: worker
     numInstances: 3
     name: aws-daemon
-    port: 8000
+    envVars:
+      - key: PORT
+        value: 8000
     runtime: node
-    startCommand: node index.js
+    startCommand: node exampe-service.mjs
     region: ohio
